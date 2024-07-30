@@ -1,0 +1,13 @@
+Source: workspace-switcher
+Section: utils
+Priority: optional
+Maintainer: Pavlos Orfanidis <pavlos@orfanidis.net.gr>
+Build-Depends: debhelper-compat (= 13), cmake
+Standards-Version: 4.1.1
+Homepage: https://github.com/porfanid/Workspace-Switcher
+
+Package: workspace-switcher
+Architecture: any
+Depends: ${shlibs:Depends}, ${misc:Depends}
+Description: Project to create a utility to switch between workspaces on a Xorg system
+ Project to create a utility to switch between workspaces on a Xorg system

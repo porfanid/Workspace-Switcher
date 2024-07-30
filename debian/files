@@ -1,0 +1,3 @@
+workspace-switcher-dbgsym_1.0.4_amd64.ddeb debug optional automatic=yes
+workspace-switcher_1.0.4_amd64.buildinfo utils optional
+workspace-switcher_1.0.4_amd64.deb utils optional
