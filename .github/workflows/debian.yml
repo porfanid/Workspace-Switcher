@@ -1,0 +1,47 @@
+name: Build Debian Package
+
+on:
+  push:
+    branches:
+      - main
+    tags:
+      - 'v*.*.*'
+  pull_request:
+    branches:
+      - main
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v3
+
+      - name: Set up CMake
+        uses: jwg7/setup-cmake@v1
+        with:
+          cmake-version: '3.22'
+
+      - name: Install dependencies
+        run: sudo apt-get update && sudo apt-get install -y \
+          cmake \
+          debhelper \
+          dh-make \
+          build-essential
+
+      - name: Build
+        run: cmake . && make
+
+      - name: Build Debian package
+        run: |
+          dpkg-buildpackage -us -uc
+          # Optionally, you can create a directory to store .deb files
+          mkdir -p debs
+          mv ../*.deb debs/
+
+      - name: Upload Debian package
+        uses: actions/upload-artifact@v3
+        with:
+          name: debian-packages
+          path: debs/
