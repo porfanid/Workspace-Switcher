@@ -2,31 +2,24 @@
 
 ## Overview
 
-The **Workspace Switcher** is a C++ program designed to switch between workspaces on both X11 and Wayland display servers. The program detects whether it's running under X11 or Wayland and uses the appropriate method to switch workspaces. For X11, it utilizes the Xlib library, and for Wayland, it uses the `swaymsg` command for the Sway window manager.
+The **Workspace Switcher** is a C++ program designed to switch between workspaces on X11 display servers. It utilizes the Xlib library.
 
 ## Features
 
 - Switch to the next or previous workspace.
-- Automatically detects and adapts to X11 or Wayland display servers.
 
 ## Requirements
 
 - **X11 Development Libraries** (for X11 support)
-- **Sway** (for Wayland support)
 - **C++17 or later** (recommended)
 
 ## Installation
 
 1. **Install Dependencies**
 
-   For X11 support:
+   Only for X11 support:
    ```bash
-   sudo apt-get install libx11-dev
-   ```
-
-For Wayland support:
-   ```bash
-   sudo apt-get install sway
+   sudo apt-get install libx11-dev libxrandr-dev
    ```
 
 2. **Clone the Repository**
@@ -60,19 +53,8 @@ Run the program with either `next` or `prev` as an argument to switch to the nex
 ./workspaces prev
 ```
 
-### For Wayland:
-
-Ensure you are running a Wayland session and have Sway installed:
-
-```bash
-./workspaces next
-./workspaces prev
-```
-
 ## How It Works
-
-- **X11**: The program queries the number of workspaces and the current workspace using Xlib functions and switches workspaces by sending a `ClientMessage` event.
-- **Wayland**: The program uses `swaymsg` to send commands to the Sway window manager to switch workspaces.
+The program queries the number of workspaces and the current workspace using Xlib functions and switches workspaces by sending a `ClientMessage` event.
 
 ## Contributing
 
@@ -90,5 +72,5 @@ This project is licensed under the MIT License. See the [LICENSE](LICENSE) file 
 
 For any questions or feedback, please contact:
 
-- **Email**: your.email@example.com
-- **GitHub**: [yourusername](https://github.com/yourusername)
+- **Email**: pavlos[at]orfanidis.net.gr
+- **GitHub**: [porfanid](https://github.com/porfanid)
