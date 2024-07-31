@@ -88,9 +88,15 @@ Run the program with either `next` or `prev` as an argument to switch to the nex
 
 Here is a demonstration of the Workspace Switcher in action:
 
-<video src="./demo/workspaces_next.mp4"></video>
+ <video width="320" height="240" controls>
+  <source src="demo/workspaces_next.mp4" type="video/mp4">
+  Your browser does not support the video tag.
+ </video>
 
-<video src="./demo/workspaces_prev.mp4"></video>
+<video width="320" height="240" controls>
+  <source src="./demo/workspaces_next.mp4" type="video/mp4">
+  Your browser does not support the video tag.
+ </video>
 
 ## How It Works
 
