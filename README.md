@@ -97,12 +97,6 @@ https://github.com/user-attachments/assets/cbda1d2b-cc11-4164-9144-d610973773fe
 https://github.com/user-attachments/assets/13ab7ee9-1896-4bfc-9b22-c990d8027298
 
 
-
-<video width="320" height="240" controls>
-  <source src="./demo/workspaces_next.mp4" type="video/mp4">
-  Your browser does not support the video tag.
- </video>
-
 ## How It Works
 
 The program performs the following steps to switch workspaces:

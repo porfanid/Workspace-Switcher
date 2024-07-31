@@ -2,7 +2,7 @@ Source: workspace-switcher
 Section: utils
 Priority: optional
 Maintainer: Pavlos Orfanidis <pavlos@orfanidis.net.gr>
-Build-Depends: debhelper-compat (= 13), cmake, libxrandr-dev
+Build-Depends: debhelper-compat (=9), cmake(>= 3.16), libxrandr-dev
 Standards-Version: 4.1.1
 Homepage: https://github.com/porfanid/Workspace-Switcher
 

@@ -1,3 +1,9 @@
+workspace-switcher (1.4.6) focal; urgency=medium
+
+  * Fixed dependencies to alow building on all versions of os and reduced the version of cmake 2024-07-30 19:17:24
+
+ -- Pavlos Orfanidis <pavlos@orfanidis.net.gr>  Tue, 30 Jul 2024 19:17:24 +0300
+
 workspace-switcher (1.2) noble; urgency=medium
 
   * Updated dependencies to allow building 2024-07-30 19:17:24
