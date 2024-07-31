@@ -84,6 +84,14 @@ Run the program with either `next` or `prev` as an argument to switch to the nex
 ./workspaces prev
 ```
 
+#### Demo
+
+Here is a demonstration of the Workspace Switcher in action:
+
+<video src="./demo/workspaces_next.mp4"></video>
+
+<video src="./demo/workspaces_prev.mp4"></video>
+
 ## How It Works
 
 The program performs the following steps to switch workspaces:
