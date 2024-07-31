@@ -2,12 +2,12 @@ Source: workspace-switcher
 Section: utils
 Priority: optional
 Maintainer: Pavlos Orfanidis <pavlos@orfanidis.net.gr>
-Build-Depends: debhelper-compat (= 13), cmake
+Build-Depends: debhelper-compat (= 13), cmake, libxrandr-dev
 Standards-Version: 4.1.1
 Homepage: https://github.com/porfanid/Workspace-Switcher
 
 Package: workspace-switcher
 Architecture: any
-Depends: ${shlibs:Depends}, ${misc:Depends}
+Depends: ${shlibs:Depends}, ${misc:Depends}, libxpm4, libxrandr2
 Description: Project to create a utility to switch between workspaces on a Xorg system
  Project to create a utility to switch between workspaces on a Xorg system

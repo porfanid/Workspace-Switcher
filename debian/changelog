@@ -1,3 +1,15 @@
+workspace-switcher (1.2) noble; urgency=medium
+
+  * Updated dependencies to allow building 2024-07-30 19:17:24
+
+ -- Pavlos Orfanidis <pavlos@orfanidis.net.gr>  Tue, 30 Jul 2024 19:17:24 +0300
+
+workspace-switcher (1.1) noble; urgency=medium
+
+  * Updated varsion to work with the ppa upload system 2024-07-30 19:17:24
+
+ -- Pavlos Orfanidis <pavlos@orfanidis.net.gr>  Tue, 30 Jul 2024 19:17:24 +0300
+
 workspace-switcher (1.0.4) noble; urgency=medium
 
   * Automated update after commit
