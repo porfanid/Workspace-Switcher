@@ -29,18 +29,30 @@ The **Workspace Switcher** is a C++ program designed to switch between workspace
    cd workspace-switcher
    ```
 
-3. **Build the Program Using CMake**
+3. **Build / Install the Program Using CMake**
+   1. **Build the program in the local directory**
+   
+      Create a build directory, configure the project with CMake, and compile the source code:
 
-   Create a build directory, configure the project with CMake, and compile the source code:
+      ```bash
+      mkdir build
+      cd build
+      cmake ..
+      make
+      ```
+      This will generate the executable named `workspaces` in the local directory.
+   2. **Install the program in the global directory**
+   
+      Create a build directory, configure the project with CMake, and compile the source code:
 
-   ```bash
-   mkdir build
-   cd build
-   cmake ..
-   make
-   ```
+      ```bash
+      mkdir build
+      cd build
+      cmake ..
+      make install
+      ```
 
-   This will generate the executable named `workspaces`.
+      This will generate the executable named `workspaces` in the global directory.
 
 ## Usage
 
