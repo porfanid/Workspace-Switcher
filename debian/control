@@ -9,5 +9,7 @@ Homepage: https://github.com/porfanid/Workspace-Switcher
 Package: workspace-switcher
 Architecture: any
 Depends: ${shlibs:Depends}, ${misc:Depends}, libxpm4, libxrandr2
-Description: Project to create a utility to switch between workspaces on a Xorg system
- Project to create a utility to switch between workspaces on a Xorg system
+Description:  Workspace switching utility for X11
+ workspace-switcher allows users to switch between multiple X11 workspaces easily.
+ It provides a graphical interface for managing workspaces,
+ supporting various configurations.

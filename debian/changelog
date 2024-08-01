@@ -1,3 +1,44 @@
+workspace-switcher (1.4.7-ubuntu6) trusty; urgency=medium
+
+  * test
+
+ -- Pavlos Orfanidis <pavlos@orfanidis.net.gr>  Thu, 01 Aug 2024 08:59:46 +0300
+
+workspace-switcher (1.4.7-ubuntu5) xenial; urgency=medium
+
+  * test
+
+ -- Pavlos Orfanidis <pavlos@orfanidis.net.gr>  Thu, 01 Aug 2024 08:59:46 +0300
+
+workspace-switcher (1.4.7-ubuntu4) focal; urgency=medium
+
+  * test
+
+ -- Pavlos Orfanidis <pavlos@orfanidis.net.gr>  Thu, 01 Aug 2024 08:59:46 +0300
+
+workspace-switcher (1.4.7-ubuntu3) jammy; urgency=medium
+
+  * test
+
+ -- Pavlos Orfanidis <pavlos@orfanidis.net.gr>  Thu, 01 Aug 2024 08:59:46 +0300
+
+workspace-switcher (1.4.7-ubuntu2) noble; urgency=medium
+
+  * test
+
+ -- Pavlos Orfanidis <pavlos@orfanidis.net.gr>  Thu, 01 Aug 2024 08:59:46 +0300
+
+workspace-switcher (1.4.7-ubuntu1) bionic; urgency=medium
+
+  * test
+
+ -- Pavlos Orfanidis <pavlos@orfanidis.net.gr>  Thu, 01 Aug 2024 08:59:46 +0300
+
+workspace-switcher (1.4.6) noble; urgency=medium
+
+  * Fixed dependencies to alow building on all versions of os and reduced the version of cmake 2024-07-30 19:17:24
+
+ -- Pavlos Orfanidis <pavlos@orfanidis.net.gr>  Tue, 30 Jul 2024 19:17:24 +0300
 workspace-switcher (1.4.6) focal; urgency=medium
 
   * Fixed dependencies to alow building on all versions of os and reduced the version of cmake 2024-07-30 19:17:24
