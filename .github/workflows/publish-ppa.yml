@@ -1,0 +1,141 @@
+name: Publish to Ubuntu PPA
+
+on:
+  push:
+    tags:
+      - 'v*.*.*'
+  workflow_dispatch:
+    inputs:
+      version:
+        description: 'Package version (e.g., 1.5.0)'
+        required: true
+        type: string
+
+jobs:
+  publish-ppa:
+    runs-on: ubuntu-latest
+    strategy:
+      matrix:
+        ubuntu_release: [focal, jammy, noble]
+    
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+      
+      - name: Set up environment
+        run: |
+          sudo apt-get update
+          sudo apt-get install -y \
+            debhelper \
+            devscripts \
+            dput \
+            gnupg \
+            lsb-release \
+            software-properties-common \
+            libx11-dev \
+            libxrandr-dev \
+            cmake \
+            build-essential
+      
+      - name: Import GPG key
+        env:
+          GPG_PRIVATE_KEY: ${{ secrets.GPG_PRIVATE_KEY }}
+        run: |
+          # Import GPG key
+          echo "$GPG_PRIVATE_KEY" | gpg --batch --import
+          
+          # Configure GPG for non-interactive use
+          mkdir -p ~/.gnupg
+          chmod 700 ~/.gnupg
+          cat >> ~/.gnupg/gpg.conf << EOF
+          use-agent
+          pinentry-mode loopback
+          EOF
+          
+          cat >> ~/.gnupg/gpg-agent.conf << EOF
+          allow-loopback-pinentry
+          default-cache-ttl 7200
+          max-cache-ttl 7200
+          EOF
+          
+          # Restart GPG agent
+          gpg-connect-agent reloadagent /bye || true
+      
+      - name: Determine version
+        id: version
+        run: |
+          if [ "${{ github.event_name }}" == "workflow_dispatch" ]; then
+            VERSION="${{ github.event.inputs.version }}"
+          else
+            VERSION="${GITHUB_REF#refs/tags/v}"
+          fi
+          echo "VERSION=$VERSION" >> $GITHUB_OUTPUT
+          echo "Package version: $VERSION"
+      
+      - name: Update debian/changelog
+        env:
+          DEBFULLNAME: "Pavlos Orfanidis"
+          DEBEMAIL: "pavlos@orfanidis.net.gr"
+        run: |
+          VERSION="${{ steps.version.outputs.VERSION }}"
+          UBUNTU_RELEASE="${{ matrix.ubuntu_release }}"
+          
+          # Create new changelog entry
+          dch -v "${VERSION}-ubuntu1~${UBUNTU_RELEASE}" \
+              -D "${UBUNTU_RELEASE}" \
+              -u low \
+              "New release: Add Wayland support for Sway, Hyprland, GNOME, and KDE Plasma"
+          
+          # Finalize changelog
+          dch -r ""
+      
+      - name: Build source package
+        env:
+          DEBFULLNAME: "Pavlos Orfanidis"
+          DEBEMAIL: "pavlos@orfanidis.net.gr"
+          GPG_PASSPHRASE: ${{ secrets.GPG_PASSPHRASE }}
+          DEBSIGN_KEYID: ${{ secrets.GPG_KEY_ID }}
+        run: |
+          # Create a wrapper script for debsign
+          cat > /tmp/gpg-sign.sh << 'WRAPPER_EOF'
+          #!/bin/bash
+          echo "$GPG_PASSPHRASE" | /usr/bin/gpg --batch --yes --passphrase-fd 0 --pinentry-mode loopback "$@"
+          WRAPPER_EOF
+          chmod +x /tmp/gpg-sign.sh
+          
+          # Build source package with signing
+          debuild -S -sa -k${DEBSIGN_KEYID} --no-lintian -p"/tmp/gpg-sign.sh"
+      
+      - name: Configure dput for PPA
+        run: |
+          cat > ~/.dput.cf << 'EOF'
+          [ppa:porfanid/workspaces]
+          fqdn = ppa.launchpad.net
+          method = ftp
+          incoming = ~porfanid/ubuntu/workspaces/
+          login = anonymous
+          allow_unsigned_uploads = 0
+          EOF
+      
+      - name: Upload to PPA
+        run: |
+          VERSION="${{ steps.version.outputs.VERSION }}"
+          UBUNTU_RELEASE="${{ matrix.ubuntu_release }}"
+          
+          # List generated files for debugging
+          echo "Generated files:"
+          ls -la ../*.changes ../*.dsc ../*.tar.* 2>/dev/null || true
+          
+          # Upload to PPA
+          cd ..
+          dput ppa:porfanid/workspaces workspace-switcher_${VERSION}-ubuntu1~${UBUNTU_RELEASE}_source.changes
+      
+      - name: Upload build artifacts
+        uses: actions/upload-artifact@v4
+        with:
+          name: source-package-${{ matrix.ubuntu_release }}
+          path: |
+            ../*.dsc
+            ../*.tar.*
+            ../*.changes
+            ../*.buildinfo

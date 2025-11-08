@@ -163,6 +163,10 @@ If you'd like to contribute to the project, please follow these steps:
 2. **Create a New Branch**: Develop your feature or bug fix in a new branch.
 3. **Submit a Pull Request**: Open a pull request with a clear description of your changes.
 
+## Publishing
+
+For maintainers: See [docs/PUBLISHING.md](docs/PUBLISHING.md) for instructions on publishing new releases to the Ubuntu PPA.
+
 ## License
 
 This project is licensed under the MIT License. See the [LICENSE](LICENSE) file for details.
