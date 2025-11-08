@@ -9,7 +9,10 @@ Homepage: https://github.com/porfanid/Workspace-Switcher
 Package: workspace-switcher
 Architecture: any
 Depends: ${shlibs:Depends}, ${misc:Depends}, libxpm4, libxrandr2
-Description:  Workspace switching utility for X11
- workspace-switcher allows users to switch between multiple X11 workspaces easily.
- It provides a graphical interface for managing workspaces,
- supporting various configurations.
+Recommends: sway | mutter | kwin-wayland | hyprland
+Description:  Workspace switching utility for X11 and Wayland
+ workspace-switcher allows users to switch between multiple workspaces easily
+ on both X11 and Wayland display servers.
+ It provides a unified command-line interface for managing workspaces,
+ supporting various window managers and compositors including Sway, Hyprland,
+ GNOME Shell, and KDE Plasma.
